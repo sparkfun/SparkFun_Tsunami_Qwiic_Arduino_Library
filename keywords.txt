@@ -1,0 +1,67 @@
+############################################################################
+# Syntax Coloring Map for SparkFun Tsunami Super WAV Trigger Qwiic Library #
+############################################################################
+# Class
+############################################################################
+
+TsunamiQwiic	KEYWORD1
+
+############################################################################
+# Constants
+############################################################################
+
+CMD_GET_VERSION	LITERAL1
+CMD_GET_SYS_INFO	LITERAL1
+CMD_TRACK_CONTROL	LITERAL1
+CMD_STOP_ALL	LITERAL1
+CMD_MASTER_VOLUME	LITERAL1
+CMD_TRACK_VOLUME	LITERAL1
+CMD_TRACK_FADE	LITERAL1
+CMD_RESUME_ALL_SYNC	LITERAL1
+CMD_SAMPLERATE_OFFSET	LITERAL1
+CMD_SET_TRIGGER_BANK	LITERAL1
+CMD_SET_INPUT_MIX	LITERAL1
+CMD_SET_MIDI_BANK	LITERAL1
+CMD_GET_TRACK_STATUS	LITERAL1
+
+TRK_PLAY_SOLO	LITERAL1
+TRK_PLAY_POLY	LITERAL1
+TRK_PAUSE	LITERAL1
+TRK_RESUME	LITERAL1
+TRK_STOP	LITERAL1
+TRK_LOOP_ON	LITERAL1
+TRK_LOOP_OFF	LITERAL1
+TRK_LOAD	LITERAL1
+
+MAX_MESSAGE_LEN	LITERAL1
+VERSION_STRING_LEN	LITERAL1
+
+IMIX_OUT1	LITERAL1
+IMIX_OUT2	LITERAL1
+IMIX_OUT3	LITERAL1
+IMIX_OUT4	LITERAL1
+
+############################################################################
+# Methods and Functions
+############################################################################
+
+start	KEYWORD2
+getVersion	KEYWORD2
+getNumTracks	KEYWORD2
+isTrackPlaying	KEYWORD2
+masterGain	KEYWORD2
+stopAllTracks	KEYWORD2
+resumeAllInSync	KEYWORD2
+trackPlaySolo	KEYWORD2
+trackPlayPoly	KEYWORD2
+trackLoad	KEYWORD2
+trackStop	KEYWORD2
+trackPause	KEYWORD2
+trackResume	KEYWORD2
+trackLoop	KEYWORD2
+trackGain	KEYWORD2
+trackFade	KEYWORD2
+samplerateOffset	KEYWORD2
+setTriggerBank	KEYWORD2
+setInputMix	KEYWORD2
+setMidiBank	KEYWORD2
