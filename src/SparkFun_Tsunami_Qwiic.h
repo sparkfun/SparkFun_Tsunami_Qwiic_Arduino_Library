@@ -10,6 +10,9 @@
 
 #ifndef _20210606_TSUNAMIQWIIC_H_
 #define _20210606_TSUNAMIQWIIC_H_
+#include "Wire.h"
+
+#define TSUNAMI_QWIIC_DEFAULT_ADDR 0x13 // 7-bit unshifted default I2C Address
 
 #define TSUNAMI_NUM_OUTPUTS	8
 
@@ -44,14 +47,12 @@
 #define IMIX_OUT3	0x04
 #define IMIX_OUT4	0x08
 
-#include <Wire.h>
-
 class TsunamiQwiic
 {
 public:
 	TsunamiQwiic() {;}
 	~TsunamiQwiic() {;}
-	bool begin(uint8_t deviceAddress = 0x13, TwoWire &wirePort = Wire);
+	bool begin(uint8_t deviceAddress = TSUNAMI_QWIIC_DEFAULT_ADDR, TwoWire &wirePort = Wire);
 	uint8_t getAddress();
 	bool getVersion(char *pDst);
 	int getNumTracks(void);
@@ -59,9 +60,9 @@ public:
 	void masterGain(int out, int gain);
 	void stopAllTracks(void);
 	void resumeAllInSync(void);
-	void trackPlaySolo(int trk, int out, bool lock);
-	void trackPlayPoly(int trk, int out, bool lock);
-	void trackLoad(int trk, int out, bool lock);
+	void trackPlaySolo(int trk, int out, bool lock = false);
+	void trackPlayPoly(int trk, int out, bool lock = false);
+	void trackLoad(int trk, int out, bool lock = false);
 	void trackStop(int trk);
 	void trackPause(int trk);
 	void trackResume(int trk);
@@ -77,7 +78,7 @@ private:
 	void trackControl(int trk, int code, int out, int flags);
 	void write(uint8_t * buf, int cnt);
 	
-	TwoWire *_i2cPort = NULL; //The generic connection to user's chosen I2C hardware
+	TwoWire *_i2cPort = NULL; // The generic connection to user's chosen I2C hardware
 	uint8_t _deviceAddress;   // Address of Tsunami
 
 	char version[VERSION_STRING_LEN];
