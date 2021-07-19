@@ -51,7 +51,8 @@ class TsunamiQwiic
 public:
 	TsunamiQwiic() {;}
 	~TsunamiQwiic() {;}
-	void start(void);
+	bool begin(uint8_t deviceAddress = 0x13, TwoWire &wirePort = Wire);
+	uint8_t getAddress();
 	bool getVersion(char *pDst);
 	int getNumTracks(void);
 	bool isTrackPlaying(int trk);

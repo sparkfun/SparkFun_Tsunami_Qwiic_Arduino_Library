@@ -47,7 +47,7 @@ void setup() {
   Serial.println("Tsunami Qwiic Example 1 - Play File");
   
   Wire.begin();
-  tq.start();
+  tq.begin(); // no arguments = defaults: address 0x13, Wire
 }
 
 void loop() {

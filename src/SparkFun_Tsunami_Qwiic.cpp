@@ -8,14 +8,32 @@
 //
 // **************************************************************
 
-#include "TsunamiQwiic.h"
+#include "SparkFun_Tsunami_Qwiic.h"
 #include <Arduino.h>
 
-
 // **************************************************************
-void TsunamiQwiic::start(void) {
+bool TsunamiQwiic::begin(uint8_t deviceAddress, TwoWire &wirePort)
+{
+	_i2cPort = &wirePort;			// Chooses the wire port of the device
+	_deviceAddress = deviceAddress; // Sets the address of the device
 
-  	//Wire.begin();
+	//make sure the Tsunami will acknowledge over I2C
+	_i2cPort->beginTransmission(_deviceAddress);
+	if (_i2cPort->endTransmission() != 0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+/* GET ADDRESS 
+	This function returns the address of the device once
+	called upon.
+*/
+uint8_t TsunamiQwiic::getAddress()
+{
+	return _deviceAddress;
 }
 
 // **************************************************************
@@ -27,9 +45,9 @@ char * pStr = pDst;
 	txbuf[0] = CMD_GET_VERSION;
 	write(txbuf, 1);
 	delay(2);
-	Wire.requestFrom(0x13, VERSION_STRING_LEN);
-	while (Wire.available()) {
-		*pDst++ = Wire.read();
+	_i2cPort->requestFrom(_deviceAddress, VERSION_STRING_LEN);
+	while (_i2cPort->available()) {
+		*pDst++ = _i2cPort->read();
 	}
 	*pDst = 0;
 	return true;
@@ -46,9 +64,9 @@ uint16_t numTracks;
 	txbuf[0] = CMD_GET_SYS_INFO;
 	write(txbuf, 1);
 	delay(2);
-	Wire.requestFrom(0x13, 3);
-	while (Wire.available()) {
-		rxbuf[i++] = Wire.read();
+	_i2cPort->requestFrom(_deviceAddress, 3);
+	while (_i2cPort->available()) {
+		rxbuf[i++] = _i2cPort->read();
 	}
 	numTracks = rxbuf[2];
 	numTracks = (numTracks << 8) + rxbuf[1];
@@ -70,9 +88,9 @@ uint8_t txbuf[8];
 	txbuf[2] = (uint8_t)((trk - 1) >> 8);
 	write(txbuf, 3);
 	delay(2);
-	Wire.requestFrom(0x13, 1);
-	while (Wire.available()) {
-		fResult = Wire.read();
+	_i2cPort->requestFrom(_deviceAddress, 1);
+	while (_i2cPort->available()) {
+		fResult = _i2cPort->read();
 	}
 	return fResult;
 }
@@ -270,10 +288,10 @@ void TsunamiQwiic::write(uint8_t * buf, int cnt) {
 int bCnt = 0;
 int i;
 
-	Wire.beginTransmission(0x13);
+	_i2cPort->beginTransmission(_deviceAddress);
 	for (i = 0; i < cnt; i++)
-		Wire.write(buf[bCnt++]);
-	Wire.endTransmission();
+		_i2cPort->write(buf[bCnt++]);
+	_i2cPort->endTransmission();
 }
 
 
