@@ -16,7 +16,7 @@
   5. use the fade command to fade from current gain to muted
 
   ***  Special note about gain settings and WAV files:
-  ***  Keep in mind that if your wave file is normalized, 
+  ***  Keep in mind that if your WAV file is normalized, 
   ***  so that the loudest value is full scale (0dB), 
   ***  then setting the gain (or target gain) to +10dB will cause clipping (distortion.)
   ***

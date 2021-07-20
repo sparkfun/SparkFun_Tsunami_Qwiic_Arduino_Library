@@ -12,6 +12,12 @@
   or you can change the gain while it is playing, and the effect will be immediate.
   Range is -70 (muted) to 0 (unity) to 10 (adds +10dB of gain).
 
+  ***  Special note about gain settings and WAV files:
+  ***  Keep in mind that if your WAV file is normalized, 
+  ***  so that the loudest value is full scale (0dB), 
+  ***  then setting the gain (or target gain) to +10dB will cause clipping (distortion.)
+  ***
+
   Resources:
   Wire.h (included with Arduino IDE)
   SparkFun_Tsunami_Qwiic.h (included in the src folder) http://librarymanager/All#SparkFun_Tsunami
