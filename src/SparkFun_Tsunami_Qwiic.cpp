@@ -45,7 +45,7 @@ char * pStr = pDst;
 	txbuf[0] = CMD_GET_VERSION;
 	write(txbuf, 1);
 	delay(2);
-	_i2cPort->requestFrom(_deviceAddress, VERSION_STRING_LEN);
+	_i2cPort->requestFrom(_deviceAddress, uint8_t(VERSION_STRING_LEN));
 	while (_i2cPort->available()) {
 		*pDst++ = _i2cPort->read();
 	}
@@ -64,7 +64,7 @@ uint16_t numTracks;
 	txbuf[0] = CMD_GET_SYS_INFO;
 	write(txbuf, 1);
 	delay(2);
-	_i2cPort->requestFrom(_deviceAddress, 3);
+	_i2cPort->requestFrom(_deviceAddress, uint8_t(3));
 	while (_i2cPort->available()) {
 		rxbuf[i++] = _i2cPort->read();
 	}
@@ -88,7 +88,7 @@ uint8_t txbuf[8];
 	txbuf[2] = (uint8_t)((trk - 1) >> 8);
 	write(txbuf, 3);
 	delay(2);
-	_i2cPort->requestFrom(_deviceAddress, 1);
+	_i2cPort->requestFrom(_deviceAddress, uint8_t(1));
 	while (_i2cPort->available()) {
 		fResult = _i2cPort->read();
 	}

@@ -1,74 +1,65 @@
 /******************************************************************************
-  Example1_PlayFile.ino
+  Example_11_CustomI2CAddress.ino
   Example for the SparkFun Tsunami Super WAV Trigger Qwiic
   License: This code is public domain but you buy us a beer if you use this and we meet someday (Beerware license).
   Authors: Jamie Robertson (info@robertsonics.com), Pete Lewis
   Date Created: 6/6/2021
   ~
 
+  This example uses the Tsunami with a non-default I2C address.
+  The default I2C address is 0x13, so for this example we will try out 0x14.
+  To change the Address on your Tsunami, you must modify the INI file on the uSD card.
+  If you include the following line, it will set the address to 0x14.
+
+  *** Note, in the INI file, the value is expressed as a decimal
+  (0x14 HEX = 20 DEC)
+  
+  #QWIC 20
+
+  You can also use the Configurator EXE tool to create INI files.
+  Learn more about this tool here:
+  http://robertsonics.com/tsunami-downloads/
+
   This example plays the WAV file named "1.wav" on the SD card.
-  Note, to learn more about file naming rules for the Tsunami,
-  Please visit: 
-  https://learn.sparkfun.com/tutorials/tsunami-hookup-guide/all#tsunami-demonstration
 
   Resources:
   Wire.h (included with Arduino IDE)
   SparkFun_Tsunami_Qwiic.h (included in the src folder) http://librarymanager/All#SparkFun_Tsunami
 
   Development environment specifics:
-  Arduino 1.8.13
+  Arduino 1.8.15
   Tsunami Hardware Version v21
   Redboard Qwiic Version v10
 
   Distributed as-is; no warranty is given.
 ******************************************************************************/
 
-#include <Wire.h>            // Used to establish serial communication on the I2C bus
+#include <SparkFun_Tsunami_Qwiic.h> //http://librarymanager/All#SparkFun_Tsunami_Super_WAV_Trigger
 
-#include <SparkFun_Tsunami_Qwiic.h>
-
-#define LED 13
-#define BUTTON 2
-
-TsunamiQwiic tq;
-
-bool gButtonState = 0;
-byte gQwiicData = 0;
-char gResponse[36];
-byte gResponseCnt = 0;
-int gNumTracks = 0;
+TsunamiQwiic tsunami;
 
 void setup() {
-  pinMode(LED, OUTPUT);
-  digitalWrite(LED, LOW);
-  pinMode(BUTTON, INPUT_PULLUP);
   
   Serial.begin(115200);
-  Serial.println("Tsunami Qwiic Example 1 - Play File");
+
+  Serial.println("Tsunami Qwiic Example 11 - Custom I2C address");
   
   Wire.begin();
-  tq.begin(); // no arguments = defaults: address 0x13, Wire
+
+  // Check to see if Tsunami Qwiic is present on the bus
+  // Note, here we are calling begin() with our custom address: 0x14
+  if (tsunami.begin(0x14) == false)
+  {
+    Serial.println("Tsunami Qwiic failed to respond. Please check wiring and possibly the I2C address. Freezing...");
+    while (1);      
+  }; 
+
+  tsunami.trackPlaySolo(1, 0); // track = 1 (aka "1.WAV"), output = 0 (aka "1L") 
+
+  Serial.println("All done!");
 }
 
-void loop() {
-  gButtonState = digitalRead(BUTTON);
-  Serial.print("gButtonState: ");
-  Serial.println(gButtonState);
-  if (gButtonState == LOW) {
-    digitalWrite(LED, HIGH);
-    tq.getVersion(gResponse);
-    Serial.print("Version: ");
-    Serial.println(gResponse);
-    gNumTracks = tq.getNumTracks();
-    Serial.print("Number of Tracks: ");
-    Serial.println(gNumTracks);
+void loop() 
+{
 
-    if (tq.isTrackPlaying(1) == false) {
-      Serial.println("Starting Track 10");
-      tq.trackPlaySolo(10, 0, false);
-    }
-    delay(1000);
-    digitalWrite(LED, LOW);
-  }
-  delay(500);
 }
