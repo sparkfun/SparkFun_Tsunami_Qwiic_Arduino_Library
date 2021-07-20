@@ -41,7 +41,7 @@ void setup() {
   
   Serial.begin(115200);
 
-  Serial.println("Tsunami Qwiic Example 13 - Fade");
+  Serial.println("Tsunami Qwiic Example 3 - Fade");
   
   Wire.begin();
 
