@@ -15,6 +15,12 @@
   4. let it play for 5 seconds
   5. use the fade command to fade from current gain to muted
 
+  ***  Special note about gain settings and WAV files:
+  ***  Keep in mind that if your wave file is normalized, 
+  ***  so that the loudest value is full scale (0dB), 
+  ***  then setting the gain (or target gain) to +10dB will cause clipping (distortion.)
+  ***
+
   Resources:
   Wire.h (included with Arduino IDE)
   SparkFun_Tsunami_Qwiic.h (included in the src folder) http://librarymanager/All#SparkFun_Tsunami
@@ -49,15 +55,16 @@ void setup() {
 
   tsunami.trackGain(3,-70); // muted
   tsunami.trackPlaySolo(3, 0); // track = 3 (aka "3.WAV"), output = 0 (aka "1L") 
-  tsunami.trackFade(3, 10, 5, false); // track 3, fade to gain of 10, fade time = 5 seconds, stopFlag is false = do not stop
+  tsunami.trackFade(3, 0, 5000, false); // track 3, fade to gain of 0, 
+  // fade time = 5000ms, stopFlag is false = do not stop
   Serial.println("Fading IN track 3 right now...");
   delay(5000);
 
   Serial.println("Gain set to 10! Playing for 5 seconds...");
   delay(5000);
 
-  tsunami.trackFade(3, -70, 5, true); // track 3, fade to gain of -70, 
-  // fade time = 5 seconds, stopFlag is true = stop track when fade is done
+  tsunami.trackFade(3, -70, 5000, true); // track 3, fade to gain of -70, 
+  // fade time = 5000ms, stopFlag is true = stop track when fade is done
   Serial.println("Fading OUT track 3 right now...");
 
   delay(5000);
