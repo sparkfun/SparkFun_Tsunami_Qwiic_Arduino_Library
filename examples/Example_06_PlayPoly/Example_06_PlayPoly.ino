@@ -65,7 +65,12 @@ void setup() {
 
 void loop() 
 {
-  delay(random(1,4)*10000);          // delay a random amount of seconds (10, 20 or 30 seconds)
+  int random_delay_seconds = random(1,4)*10; // delay a random amount of seconds (10, 20 or 30 seconds)
+  Serial.print("Delaying for ");
+  Serial.print(random_delay_seconds);
+  Serial.println(" seconds.");
+  delay(random_delay_seconds*1000);        
+    
   tsunami.trackPlayPoly(track, 0);  // play track on top of whatever else is playing
                                     // in this example, it is really only track 7 that is currently playing.
   Serial.print("Playing track ");
