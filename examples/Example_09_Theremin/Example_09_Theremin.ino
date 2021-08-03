@@ -12,6 +12,10 @@
   In addition to setting up the hardware described below, you also will need to ensure
   there is a 440Hz 30s sine WAV file named "17.WAV" on the uSD card.
 
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
+
   It uses the following hardware:
   - SparkFun Tsunami Super WAV Trigger Qwiic
   - SparkFun RedBoard Qwiic as the controller.

@@ -17,10 +17,10 @@
 
 // WAVE File number defines
 // (these match up with the actual WAV file names on the uSD card)
-#define KICK 100
-#define SNARE 101
-#define HAT 102
-#define RIDE 103
+#define KICK 101
+#define SNARE 102
+#define HAT 103
+#define RIDE 104
 
 // set default tracks assigned to actively used kick/snare/hat/etc. varialbles
 // variables used for playback in main program

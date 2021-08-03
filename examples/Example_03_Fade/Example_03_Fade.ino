@@ -6,7 +6,7 @@
   Date Created: 6/6/2021
   ~
 
-  This example slowly fades in "3.WAV", let's it play for 5 seconds, then slowly fades it out.
+  This example slowly fades in "19_rain_thunder_1_minute_MONO.WAV", let's it play for 5 seconds, then slowly fades it out.
 
   It does this in 5 steps:
   1. set gain to muted (-70)
@@ -20,6 +20,10 @@
   ***  so that the loudest value is full scale (0dB), 
   ***  then setting the gain (or target gain) to +10dB will cause clipping (distortion.)
   ***
+
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
 
   Resources:
   Wire.h (included with Arduino IDE)
@@ -37,6 +41,8 @@
 
 TsunamiQwiic tsunami;
 
+int trackNum = 19; // this is used below to control the track we want to fade/play/stop
+
 void setup() {
   
   Serial.begin(115200);
@@ -53,22 +59,22 @@ void setup() {
     while (1);      
   }; 
 
-  tsunami.trackGain(3,-70); // muted
-  tsunami.trackPlaySolo(3, 0); // track = 3 (aka "3.WAV"), output = 0 (aka "1L") 
-  tsunami.trackFade(3, 0, 5000, false); // track 3, fade to gain of 0, 
+  tsunami.trackGain(trackNum,-70); // muted
+  tsunami.trackPlaySolo(trackNum, 0); // track = 19 (aka "19.WAV"), output = 0 (aka "1L") 
+  tsunami.trackFade(trackNum, 0, 5000, false); // track 19, fade to gain of 0, 
   // fade time = 5000ms, stopFlag is false = do not stop
-  Serial.println("Fading IN track 3 right now...");
+  Serial.println("Fading IN track 19 right now...");
   delay(5000);
 
-  Serial.println("Gain set to 10! Playing for 5 seconds...");
+  Serial.println("Gain set to unity (0)! Playing for 5 seconds...");
   delay(5000);
 
-  tsunami.trackFade(3, -70, 5000, true); // track 3, fade to gain of -70, 
+  tsunami.trackFade(trackNum, -70, 5000, true); // track 3, fade to gain of -70, 
   // fade time = 5000ms, stopFlag is true = stop track when fade is done
-  Serial.println("Fading OUT track 3 right now...");
+  Serial.println("Fading OUT track 19 right now...");
 
   delay(5000);
-  Serial.println("Track 3 stopped.");
+  Serial.println("Track 19 stopped.");
 }
 
 void loop() 

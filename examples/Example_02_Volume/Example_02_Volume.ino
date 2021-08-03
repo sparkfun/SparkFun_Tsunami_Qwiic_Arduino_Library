@@ -18,6 +18,10 @@
   ***  then setting the gain (or target gain) to +10dB will cause clipping (distortion.)
   ***
 
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
+
   Resources:
   Wire.h (included with Arduino IDE)
   SparkFun_Tsunami_Qwiic.h (included in the src folder) http://librarymanager/All#SparkFun_Tsunami

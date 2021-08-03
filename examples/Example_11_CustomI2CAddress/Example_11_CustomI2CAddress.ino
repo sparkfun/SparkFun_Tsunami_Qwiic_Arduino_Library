@@ -11,16 +11,20 @@
   To change the Address on your Tsunami, you must modify the INI file on the uSD card.
   If you include the following line, it will set the address to 0x14.
 
+  #QWIC 20
+
   *** Note, in the INI file, the value is expressed as a decimal
   (0x14 HEX = 20 DEC)
   
-  #QWIC 20
-
   You can also use the Configurator EXE tool to create INI files.
   Learn more about this tool here:
   http://robertsonics.com/tsunami-downloads/
 
   This example plays the WAV file named "1.wav" on the SD card.
+
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
 
   Resources:
   Wire.h (included with Arduino IDE)

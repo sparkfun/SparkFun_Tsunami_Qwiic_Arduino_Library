@@ -6,7 +6,11 @@
   Date Created: 6/6/2021
   ~
 
-  This example loops the WAV file named "4.wav" on the SD card.
+  This example loops the WAV file named "18_loop_example_guitar_riff_MONO.wav" on the SD card.
+
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
 
   Resources:
   Wire.h (included with Arduino IDE)
@@ -40,11 +44,11 @@ void setup() {
     while (1);      
   }; 
 
-  tsunami.trackLoop(4, true); // enable track looping on track 4
+  tsunami.trackLoop(18, true); // enable track looping on track 4
 
-  tsunami.trackPlaySolo(4, 0); // track = 4 (aka "4.WAV"), output = 0 (aka "1L") 
+  tsunami.trackPlaySolo(18, 0); // track = 4 (aka "4.WAV"), output = 0 (aka "1L") 
 
-  Serial.println("Track 4 is now looping!");
+  Serial.println("Track 18 is now looping!");
 }
 
 void loop() 

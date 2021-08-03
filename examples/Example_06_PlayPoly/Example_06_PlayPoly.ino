@@ -9,27 +9,31 @@
   This example demonstrates the polyphonic feature of the Tsunami.
   This means that we can play multiple WAV files at the same time.
   This is called polyphony or layering audio!
-  You can even call one long sound WAV file, and then call other files to 
+  You can call one long sound WAV file, and then call other files to 
   play on top of that. You can even call the same file many times.
   This becomes very useful when creating musical instruments
-  or even interesting sound environments!
+  or interesting sound environments.
 
-  In this example we will simply play one WAV file, 7.WAV, which is 
+  In this example we will simply play one WAV file, (19.WAV), which is 
   actually a long-ish (1 minute) recording of rain and thunder.
   Then we will randomly layer some bird sounds on top of that using 
   the playTrackPoly() function.
 
-  The bird sounds are on example WAV files 8,9,and 10.
+  The bird sounds are on example WAV files 20, 21 and 22.
+  20_meadowlark_MONO.wav
+  21_cardinal_MONO.wav
+  22_dove_MONO.wav
 
-  All of the WAV files needed for this example can be found here:
-  https://github.com/sparkfun/SparkFun_Tsunami_Super_WAV_Trigger_Qwiic
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
 
   Resources:
   Wire.h (included with Arduino IDE)
   SparkFun_Tsunami_Qwiic.h (included in the src folder) http://librarymanager/All#SparkFun_Tsunami
 
   Development environment specifics:
-  Arduino 1.8.13
+  Arduino 1.8.15
   Tsunami Hardware Version v21
   Redboard Qwiic Version v10
 
@@ -40,7 +44,7 @@
 
 TsunamiQwiic tsunami;
 
-int track = 8; // start with track 8, and then we will increment through 8,9,10.
+int track = 20; // start with track 20 (meadowlark), and then we will increment through 21,22 and back.
 
 void setup() {
   
@@ -58,9 +62,9 @@ void setup() {
     while (1);      
   }; 
 
-  tsunami.trackLoop(7, true); // loop forever
-  tsunami.trackPlayPoly(7, 0); // track = 7 (aka "7.WAV"), output = 0 (aka "1L") 
-  Serial.println("Looping track 7 right now...");
+  tsunami.trackLoop(19, true); // loop forever
+  tsunami.trackPlayPoly(19, 0); // track = 19 (aka "19.WAV"), output = 0 (aka "1L") 
+  Serial.println("Looping track 19 (rain) right now...");
 }
 
 void loop() 
@@ -76,5 +80,5 @@ void loop()
   Serial.print("Playing track ");
   Serial.println(track);
   track = track + 1;
-  if(track == 11) track = 8; // cycle back to track 8.
+  if(track == 23) track = 20; // cycle back to track 8.
 }

@@ -17,12 +17,16 @@
   You can also hook up a potentiometer to A0 to actively adjust tempo.
   For this, you must uncomment some code below in the function "playMeasure()".
 
+  The WAV file (or files) needed for this example can be downloaded from the
+  SparkFun Hookup Guide here:
+  https://learn.sparkfun.com/tutorials/tsunami-super-wav-trigger-hookup-guide
+
   Resources:
   Wire.h (included with Arduino IDE)
   SparkFun_Tsunami_Qwiic.h (included in the src folder) http://librarymanager/All#SparkFun_Tsunami
 
   Development environment specifics:
-  Arduino 1.8.13
+  Arduino 1.8.15
   Tsunami Hardware Version v21
   Tsunami Firmware Version v1.94m (MONO FIRMWARE)
   Redboard Qwiic Version v10
@@ -42,6 +46,7 @@ int delay_ms_tsunami_com = 10; // used to delay between sequenctial I2C writes
 TsunamiQwiic tsunami;                // Our Tsunami object
 
 float bpm = 120.0; // beats per minute (how many 1/4 notes there are in a minute)
+float bpm_previous = 1.0; // used to know if there was a change in bpm and whether we want to print it.
 
 char versionResponse[36]; // an array of chars to store the version string
 int NumTracks = 0; // used to store the value returned from the tsunami
@@ -112,15 +117,22 @@ void play_measure()
   // loop through all 16th bar time divisions,
   // play each WAV (or combo of WAVS) at each division.
 
+  Serial.println("Playing measure.");
+
   long start_time_micros = micros();
 
   for (int i = 0 ; i < 16 ; i++)
   {
     //int val = analogRead(A0); // option to control tempo speed, hookup a potentiometer to A0
-    //bpm = map(val, 0, 1023, 0, 240);
+    //bpm = map(val, 0, 1023, 60, 320);
     bpm = 120.0;
-    Serial.print("bpm: ");
-    Serial.println(bpm);
+
+    if (bpm != bpm_previous) // only print changing bpm (useful when adjusting with pot on A0)
+    {
+      Serial.print("bpm: ");
+      Serial.println(bpm);
+      bpm_previous = bpm;
+    }
 
     if (kick[i] == 1) tsunami.trackLoad(kick_t, 0, false);
     delay(delay_ms_tsunami_com);
