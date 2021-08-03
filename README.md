@@ -1,16 +1,18 @@
-SparkFun TMP117 Library
+SparkFun Tsunami Qwiic Arduino Library
 ========================================
 
-[![SparkX High Precision Temperature Sensor - TMP117](https://cdn.sparkfun.com/assets/parts/1/3/9/6/5/15413-High_Precision_Temperature_Sensor_-_TMP117__Qwiic_-01.jpg)](https://www.sparkfun.com/products/15413)
+[![SparkFun Tsunami Super WAV Trigger (Qwiic)](https://cdn.sparkfun.com/assets/parts/1/7/4/8/8/18159-SparkFun_Tsunami_Super_WAV_Trigger__Qwiic_-01.jpg)](https://www.sparkfun.com/products/18159)
 
-[*High Precision Temperature Sensor - TMP117 (Qwiic) (SPX-15413)*](https://www.sparkfun.com/products/15413)
+[*SparkFun Tsunami Super WAV Trigger (Qwiic) (WIG-18159)*](https://www.sparkfun.com/products/18159)
 
-The TMP117 is a high precision temperature Sensor with accuracy of up to +/-0.1 degrees celsius and an operating temperature range of -55°C to +150°C. It is NIST traceable and verified with equipment that is calibrated to ISO/IEC 17025 accredited standards. It has a very low power consumption with a supply range of 1.8V to 5.5V. 
+Tsunami is a polyphonic Wav file player with 4 stereo (or 8 mono) outputs.  Wav files can be triggered using the 16 onboard contacts, via MIDI, serial connection or Qwiic to a PC or other microcontroller.
 
-The TMP117 address can be changed with an external jumper to 4 different addresses. There are 4 different conversion modes that it can read from, with continuous conversion, shutdown, and one shot conversion. There is also digital offset for system correction, programmable temperature limits, General-Purpose EEPROM, and selectable averaging. 
+Note, this Arduino Library is capable of controlling the Tsunami Super WAV Trigger (Qwiic) via I2C commands using a Qwiic Cable.
+If you'd like to control your Tsunami using the Serial interface, then please check out the following separate Arduino Library here:
+https://github.com/robertsonics/Tsunami-Arduino-Serial-Library
 
 SparkFun labored with love to create this code. Feel like supporting open source hardware? 
-Buy a [board](https://www.sparkfun.com/products/15413) from SparkFun!
+Buy a [board](https://www.sparkfun.com/products/18159) from SparkFun!
 
 Repository Contents
 -------------------
@@ -24,7 +26,7 @@ Documentation
 --------------
 
 * **[Installing an Arduino Library Guide](https://learn.sparkfun.com/tutorials/installing-an-arduino-library)** - Basic information on how to install an Arduino library.
-* **[Product Repository](https://github.com/sparkfunX/Qwiic_TMP117)** - Main repository (including hardware files)
+* **[Product Repository](https://github.com/sparkfun/SparkFun_Tsunami_Super_WAV_Trigger_Qwiic)** - Main repository (including hardware files and example WAV files)
 
 License Information
 -------------------
