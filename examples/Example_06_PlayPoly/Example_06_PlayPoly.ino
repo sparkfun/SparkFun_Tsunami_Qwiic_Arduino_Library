@@ -63,6 +63,7 @@ void setup() {
   }; 
 
   tsunami.trackLoop(19, true); // loop forever
+  tsunami.trackGain(19, 0); // set gain to unity (aka 0), in case it was set to mute by previous fade example
   tsunami.trackPlayPoly(19, 0); // track = 19 (aka "19.WAV"), output = 0 (aka "1L") 
   Serial.println("Looping track 19 (rain) right now...");
 }
